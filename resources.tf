@@ -42,11 +42,9 @@ module "main" {
   tags = local.common_tags
 }
 
-# __generated__ by Terraform
-# Please review these resources and move them into your main configuration files.
-
 # __generated__ by Terraform from "sg-01110a85f1de8932a"
 resource "aws_security_group" "ingress" {
+  count       = var.environment == "development" ? 1 : 0
   description = "Security group with no ingress rule"
   egress = [{
     cidr_blocks      = ["0.0.0.0/0"]
